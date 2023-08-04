@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.companyName {
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  margin: 0 20px;
+
+  &:hover {
+    color: #174ea6;
+  }
+}
+
+
+.navbarCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbarRight {
+  display: inline-block;
+  font-size: 18px;
+  padding: 12px;
+
+  &:hover {
+    color: grey;
+  }
+}
