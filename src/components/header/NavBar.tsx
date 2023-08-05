@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './NavBar.module.scss';
 import TopRankedCurrency from './TopRankedCurrency/TopRankedCurrency';
-import Portfolio from '../portfolio/Portfolio'; // Исправляем путь
+import Portfolio from '../portfolio/Portfolio';
 
 function NavBar() {
-    const [portfolioAmount, setPortfolioAmount] = useState('');
-
-    const updatePortfolioAmount = (amount: string) => {
-        setPortfolioAmount(amount);
-    };
-
     return (
         <div className={styles.navbar}>
             <div className={styles.companyName}>Logo</div>
@@ -17,7 +11,9 @@ function NavBar() {
                 <TopRankedCurrency />
             </div>
             <div className={styles.navbarRight}>
-                <Portfolio amount={portfolioAmount} />
+                <div style={{ cursor: 'pointer' }}>
+                    <Portfolio />
+                </div>
             </div>
         </div>
     );

@@ -3,7 +3,7 @@ import styles from './CurrencyTable.module.scss';
 import {PlusCircleOutlined} from "@ant-design/icons";
 import {Button} from "antd";
 import axios from 'axios';
-import AddToPortfolioModal from "../addToPortfolioModal/AddToPortfolioModal";
+import AddToCurrencyModal from "../addToPortfolioModal/AddToCurrencyModal";
 import {Currency} from "../../types/apiTypes";
 import TablePagination from "../pagination/Pagination";
 
@@ -80,7 +80,7 @@ function CurrencyTable() {
                                             <PlusCircleOutlined className={styles.plusIcon}/>
                                         </Button>
                                     </td>
-                                    <AddToPortfolioModal isOpen={isModalOpen} onOk={handleOk} onCancel={handleCancel}/>
+                                    <AddToCurrencyModal isOpen={isModalOpen} onOk={handleOk} onCancel={handleCancel}/>
                                 </tr>
                             ))}
                         </tbody>

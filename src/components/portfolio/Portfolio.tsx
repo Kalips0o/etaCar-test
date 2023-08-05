@@ -1,13 +1,26 @@
-import React from 'react';
+// Portfolio.js
+import React, { useState } from 'react';
+import AddToPortfolioModal from "./addToPortfolioModal/addToPortfolioModal";
 
-interface PortfolioProps {
-    amount: string;
-}
+function Portfolio() {
+    const [modalVisible, setModalVisible] = useState(false);
 
-const Portfolio: React.FC<PortfolioProps> = ({ amount }) => {
+    const showModal = () => {
+        setModalVisible(true);
+    };
+
+    const hideModal = () => {
+        setModalVisible(false);
+    };
+
     return (
-        <div>Portfolio</div>
+        <div>
+            <div onClick={showModal} style={{ cursor: 'pointer' }}>
+                Portfolio
+            </div>
+            <AddToPortfolioModal visible={modalVisible} onCancel={hideModal} />
+        </div>
     );
-};
+}
 
 export default Portfolio;

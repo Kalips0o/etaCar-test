@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {Button, Input, Modal} from 'antd';
-import styles from './AddToPortfolioModal.module.scss';
+import styles from './AddToCurrencyModal.module.scss';
 
-interface AddToPortfolioModalProps {
+interface AddToCurrencyModalProps {
     isOpen: boolean;
     onOk: () => void;
     onCancel: () => void;
 }
 
-const AddToPortfolioModal: React.FC<AddToPortfolioModalProps> = ({isOpen, onOk, onCancel}) => {
+const AddToCurrencyModal: React.FC<AddToCurrencyModalProps> = ({isOpen, onOk, onCancel}) => {
     const [amount, setAmount] = useState('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,4 +41,4 @@ const AddToPortfolioModal: React.FC<AddToPortfolioModalProps> = ({isOpen, onOk, 
     );
 };
 
-export default AddToPortfolioModal;
+export default AddToCurrencyModal;
