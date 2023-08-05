@@ -1,0 +1,21 @@
+.currencyRow {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover .currency_row_info {
+    background-color: #cdd9e5;
+  }
+
+  &:hover {
+    background-color: #cdd9e5;
+  }
+}
+
+
+.currency_row_info {
+  align-items: center;
+  display: flex;
+}

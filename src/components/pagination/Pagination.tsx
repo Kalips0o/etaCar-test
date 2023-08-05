@@ -1,5 +1,6 @@
-function Pagination () {
-    return <div> Pagination </div>
-}
+import React from 'react';
+import { Pagination } from 'antd';
 
-export default Pagination
+const TablePagination: React.FC = () => <Pagination defaultCurrent={1} total={50} />;
+
+export default TablePagination;

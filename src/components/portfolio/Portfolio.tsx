@@ -1,5 +1,13 @@
-function Portfolio () {
-    return <div> Portfolio </div>
+import React from 'react';
+
+interface PortfolioProps {
+    amount: string;
 }
 
-export default Portfolio
+const Portfolio: React.FC<PortfolioProps> = ({ amount }) => {
+    return (
+        <div>Portfolio</div>
+    );
+};
+
+export default Portfolio;
