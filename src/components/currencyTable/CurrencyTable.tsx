@@ -6,6 +6,7 @@ import axios from 'axios';
 import AddToCurrencyModal from "../addToPortfolioModal/AddToCurrencyModal";
 import {Currency} from "../../types/apiTypes";
 import TablePagination from "../pagination/Pagination";
+import {formatNumber} from "../../utils/formatters";
 
 
 interface ApiResponse {
@@ -17,6 +18,8 @@ function CurrencyTable() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
+
+
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -70,11 +73,12 @@ function CurrencyTable() {
                                         <span className={styles.textCrypto}>{crypto.name}</span>
                                     </td>
                                     <td>{crypto.symbol}</td>
-                                    <td>{crypto.marketCapUsd}</td>
-                                    <td className={styles.textWarning}>{crypto.priceUsd}</td>
-                                    <td className={styles.textWarning}>{crypto.supply}</td>
-                                    <td className={styles.textWarning}>{crypto.changePercent24Hr}</td>
-                                    <td className={styles.textSuccess}>{crypto.vwap24Hr}</td>
+                                    <td>{formatNumber(parseFloat(crypto.marketCapUsd))}</td>
+                                    <td className={styles.textWarning}>{formatNumber(parseFloat(crypto.priceUsd))}</td>
+                                    <td className={styles.textWarning}>{ formatNumber(parseFloat(crypto.supply)) }</td>
+                                    <td className={styles.textSuccess}>{formatNumber(parseFloat(crypto.vwap24Hr))}</td>
+                                    <td className={styles.textWarning}> {(parseFloat(crypto.changePercent24Hr)) > 0 ? "+" : ""} {formatNumber(parseFloat(crypto.changePercent24Hr))}</td>
+
                                     <td>
                                         <Button type="text" onClick={showModal}>
                                             <PlusCircleOutlined className={styles.plusIcon}/>
