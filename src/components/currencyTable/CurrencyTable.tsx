@@ -7,8 +7,7 @@ import { formatNumber } from '../../utils/formatters';
 import { Button } from 'antd';
 import Pagination from '../pagination/Pagination';
 import { PaginationContext, PaginationContextState } from '../../context/pagination.context';
-import AddToCurrencyModal from '../addToCurrencyModal/AddToCurrencyModal';
-
+import CurrencyTableModal from '../addToCurrencyModal/CurrencyTableModal';
 
 interface ApiResponse {
     data: Currency[];
@@ -21,10 +20,10 @@ function CryptoTable() {
         totalPages,
         setTotalPages,
     } = useContext<PaginationContextState>(PaginationContext);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [cryptoData, setCryptoData] = useState<Currency[]>([]);
 
-    const itemsPerPage: number = 5; // Количество элементов на одной странице
+    const [cryptoData, setCryptoData] = useState<Currency[]>([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const itemsPerPage: number = 5;
 
     useEffect(() => {
         axios
@@ -39,25 +38,23 @@ function CryptoTable() {
             });
     }, []);
 
-    useEffect((): void => {
+    useEffect(() => {
         setPagination();
     }, [totalPages, currentPage]);
-
 
     const startIndex: number = (currentPage - 1) * itemsPerPage;
     const endIndex: number = startIndex + itemsPerPage;
     const visibleCryptoData: Currency[] = cryptoData.slice(startIndex, endIndex);
 
-
     const showModal = () => {
         setIsModalOpen(true);
     };
 
-    const handleOk = () => {
+    const handleModalOk = () => {
         setIsModalOpen(false);
     };
 
-    const handleCancel = () => {
+    const handleModalCancel = () => {
         setIsModalOpen(false);
     };
 
@@ -92,18 +89,17 @@ function CryptoTable() {
                                 <td className={styles.textWarning}>{formatNumber(parseFloat(crypto.supply))}</td>
                                 <td className={styles.textSuccess}>{formatNumber(parseFloat(crypto.vwap24Hr))}</td>
                                 <td className={`${styles.Change24Hr} ${parseFloat(crypto.changePercent24Hr) > 0 ? styles.textSuccess : styles.textDanger}`}>
-    <span style={{ color: parseFloat(crypto.changePercent24Hr) > 0 ? 'green' : 'red' }}>
-        {parseFloat(crypto.changePercent24Hr) > 0 ? '+' : '-'}
-        {formatNumber(Math.abs(parseFloat(crypto.changePercent24Hr)))}
-    </span>
+                                        <span
+                                            style={{ color: parseFloat(crypto.changePercent24Hr) > 0 ? 'green' : 'red' }}>
+                                            {parseFloat(crypto.changePercent24Hr) > 0 ? '+' : '-'}
+                                            {formatNumber(Math.abs(parseFloat(crypto.changePercent24Hr)))}
+                                        </span>
                                 </td>
-
                                 <td>
                                     <Button type='text' onClick={showModal}>
                                         <PlusCircleOutlined className={styles.plusIcon} />
                                     </Button>
                                 </td>
-                                <AddToCurrencyModal isOpen={isModalOpen} onOk={handleOk} onCancel={handleCancel} />
                             </tr>
                         ))}
                         </tbody>
@@ -111,6 +107,11 @@ function CryptoTable() {
                     <Pagination />
                 </div>
             </div>
+            <CurrencyTableModal
+                visible={isModalOpen}
+                onCancel={handleModalCancel}
+                onOk={handleModalOk}
+            />
         </div>
     );
 }
