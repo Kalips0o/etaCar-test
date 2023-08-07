@@ -1,20 +1,22 @@
-import {Layout, Space} from 'antd';
 import NavBar from "../../components/header/NavBar";
 import CryptoTable from "../../components/currencyTable/CurrencyTable";
 
 
-const {Header, Content} = Layout;
 
 const headerStyle: React.CSSProperties = {
+    display:'flex',
     textAlign: 'center',
+    justifyContent:'center',
     color: '#000101',
-    height: 80,
-    paddingInline: 50,
+    height: 70,
+    paddingTop:'20px',
+    paddingInline: 30,
     lineHeight: '64px',
     backgroundColor: 'rgba(159,161,161,0.49)',
 };
 
 const contentStyle: React.CSSProperties = {
+
     textAlign: 'center',
     height: '100vh',
     lineHeight: '50px',
@@ -24,16 +26,16 @@ const contentStyle: React.CSSProperties = {
 
 
 export const AppLayout: React.FC = () => (
-    <Space direction="vertical" style={{width: '100%'}} size={[0, 48]}>
-        <Layout>
-            <Header style={headerStyle}>
+
+       <div>
+            <div style={headerStyle}>
                 <NavBar />
-            </Header>
-            <Content style={contentStyle}>
+            </div>
+            <div style={contentStyle}>
                 <CryptoTable/>
-            </Content>
-        </Layout>
-    </Space>
+            </div>
+</div>
+
 );
 
 
