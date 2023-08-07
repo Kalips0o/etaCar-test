@@ -1,13 +1,14 @@
 import {Layout, Space} from 'antd';
 import NavBar from "../../components/header/NavBar";
-import CryptoTable from "../../components/cryptoTable/CryptoTable";
+import CryptoTable from "../../components/currencyTable/CurrencyTable";
+
 
 const {Header, Content} = Layout;
 
 const headerStyle: React.CSSProperties = {
     textAlign: 'center',
     color: '#000101',
-    height: 60,
+    height: 80,
     paddingInline: 50,
     lineHeight: '64px',
     backgroundColor: 'rgba(159,161,161,0.49)',

@@ -13,7 +13,7 @@ const AddToPortfolioModal: React.FC<AddToPortfolioModalProps> = ({ visible, onCa
     };
 
     return (
-        <Modal  visible={visible}  onCancel={handleCancel}>
+        <Modal visible={visible} onCancel={handleCancel}>
             <p>Скоро здесь будет список валют в портфеле и возможностью убрать каждую из них из портфеля</p>
         </Modal>
     );

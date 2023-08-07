@@ -1,6 +1,5 @@
-// Portfolio.js
 import React, { useState } from 'react';
-import AddToPortfolioModal from "./addToPortfolioModal/addToPortfolioModal";
+import AddToPortfolioModal from './addToPortfolioModal/addToPortfolioModal';
 
 function Portfolio() {
     const [modalVisible, setModalVisible] = useState(false);
