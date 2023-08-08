@@ -7,7 +7,7 @@ import { formatNumber } from '../../utils/formatters';
 import { Button } from 'antd';
 import Pagination from '../pagination/Pagination';
 import { PaginationContext, PaginationContextState } from '../../context/pagination.context';
-import CurrencyTableModal from '../addToCurrencyModal/CurrencyTableModal';
+import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
 
 interface ApiResponse {
     data: Currency[];

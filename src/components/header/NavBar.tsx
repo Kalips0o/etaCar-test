@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import TopRankedCurrency from './TopRankedCurrency/TopRankedCurrency';
-import Portfolio from '../portfolio/Portfolio';
 import { Currency } from '../../types/apiTypes';
 import styles from './NavBar.module.scss';
 import logo from './../../assets/pngwing.com.png';
+import Portfolio from '../portfolio/Portfolio';
 
 interface TopRankedCurrencyProps {
     id: string,

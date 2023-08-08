@@ -1,5 +1,7 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useContext } from 'react';
 import styles from './CurrencyTableModal.module.scss';
+import { PortfolioModalContext } from '../../../context/portfolioModal.context';
+
 
 interface CurrencyTableModalProps {
     visible: boolean;
@@ -8,6 +10,8 @@ interface CurrencyTableModalProps {
 }
 
 const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCancel, onOk }) => {
+    const { setLastAddedCurrencyToPortfolio } = useContext(PortfolioModalContext);
+
     const [inputValue, setInputValue] = useState<string>('');
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -18,8 +22,17 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
     };
 
     const handleOk = () => {
-        if (parseFloat(inputValue) >= 0.00001 && parseFloat(inputValue) <= 1000000) {
-            console.log('Input value:', inputValue);
+        const parsedValue = parseFloat(inputValue);
+        if (parsedValue >= 0.00001 && parsedValue <= 1000000) {
+            const newCurrency = {
+                id: 'unique_id', // Replace with the appropriate ID for your currency
+                name: 'New Currency', // Replace with the appropriate name
+                symbol: 'NC', // Replace with the appropriate symbol
+                priceUsd: parsedValue,
+                amount: parsedValue,
+            };
+
+            setLastAddedCurrencyToPortfolio(newCurrency);
             onOk();
             setInputValue('');
         } else {
@@ -47,8 +60,8 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
                     onChange={handleInput}
                 />
                 <div className={styles.modalButtons}>
-                    <button className={styles.modalButton} onClick={handleOk}>  Confirm </button>
-                    <button className={styles.modalButton} onClick={handleCancel}>Cancel</button>
+                    <button className={styles.modalButtonConfirm} onClick={handleOk}>  Confirm </button>
+                    <button className={styles.modalButtonCancel} onClick={handleCancel}>Cancel</button>
                 </div>
             </div>
         </div>
