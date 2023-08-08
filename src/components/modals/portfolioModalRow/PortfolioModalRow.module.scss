@@ -12,15 +12,19 @@
   display: flex;
   font-size: 20px;
   color: black;
-  margin: 0 0 20px;
   justify-content: space-between;
 }
-
+.remove_button_container {
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
 .remove_currency_button {
   margin: 0 0 0 20px;
   align-items: center;
   appearance: none;
-  background-color: #fff;
+  background-color: rgba(143, 141, 143, 0.53);
   border-radius: 24px;
   border-style: none;
   cursor: pointer;
@@ -43,8 +47,4 @@
   }
 }
 
-.remove_button_container {
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;
-}
+

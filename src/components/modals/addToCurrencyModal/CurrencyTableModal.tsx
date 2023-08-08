@@ -1,15 +1,17 @@
 import React, { ChangeEvent, useState, useContext } from 'react';
 import styles from './CurrencyTableModal.module.scss';
 import { PortfolioModalContext } from '../../../context/portfolioModal.context';
+import { Currency } from '../../../types/apiTypes';
 
 
 interface CurrencyTableModalProps {
     visible: boolean;
     onOk: () => void;
     onCancel: () => void;
+    selectedCrypto: Currency | null; // Add this prop
 }
 
-const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCancel, onOk }) => {
+const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCancel, onOk, selectedCrypto }) => {
     const { setLastAddedCurrencyToPortfolio } = useContext(PortfolioModalContext);
 
     const [inputValue, setInputValue] = useState<string>('');
@@ -23,13 +25,13 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
 
     const handleOk = () => {
         const parsedValue = parseFloat(inputValue);
-        if (parsedValue >= 0.00001 && parsedValue <= 1000000) {
+        if (parsedValue >= 0.00001 && parsedValue <= 1000000 && selectedCrypto) {
             const newCurrency = {
-                id: 'unique_id', // Replace with the appropriate ID for your currency
-                name: 'New Currency', // Replace with the appropriate name
-                symbol: 'NC', // Replace with the appropriate symbol
-                priceUsd: parsedValue,
-                amount: parsedValue,
+                id: selectedCrypto.id,
+                name: selectedCrypto.name,
+                symbol: selectedCrypto.symbol,
+                priceUsd: parseFloat(selectedCrypto.priceUsd) * parsedValue, // Parse the priceUsd to a number
+                amount: parsedValue  // Multiply by the price
             };
 
             setLastAddedCurrencyToPortfolio(newCurrency);
@@ -60,7 +62,7 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
                     onChange={handleInput}
                 />
                 <div className={styles.modalButtons}>
-                    <button className={styles.modalButtonConfirm} onClick={handleOk}>  Confirm </button>
+                    <button className={styles.modalButtonConfirm} onClick={handleOk}> Confirm</button>
                     <button className={styles.modalButtonCancel} onClick={handleCancel}>Cancel</button>
                 </div>
             </div>

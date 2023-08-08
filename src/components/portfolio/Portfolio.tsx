@@ -5,7 +5,7 @@ import styles from "./Portfolio.module.scss";
 import { PortfolioModalContext, PortfolioModalContextState } from '../../context/portfolioModal.context';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
-import { CurrencySummaryWithAmount } from '../modals/зortfolioModalRow/PortfolioModalRow';
+import { CurrencySummaryWithAmount } from '../modals/portfolioModalRow/PortfolioModalRow';
 
 
 function Portfolio() {
@@ -100,7 +100,7 @@ function Portfolio() {
                     : <>
                         {currencyPortfolioRows.length
                             ? <div>{preparePortfolioText()}</div>
-                            : <div>Portfolio is Empty</div>
+                            : <div> Portfolio is Empty </div>
                         }
                     </>
                 }

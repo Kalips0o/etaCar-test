@@ -46,7 +46,7 @@ function PortfolioModalRow({
     return (
         <div className={styles.portfolio_currency_row}>
             <div>
-                <div className={styles.portfolio_currency_name}>{name} ({symbol})</div>
+                <div className={styles.portfolio_currency_name}> {name} ({symbol})</div>
                 <div className={styles.portfolio_currency_amount}>
                     Amount: {formatNumber(amount)}
                 </div>

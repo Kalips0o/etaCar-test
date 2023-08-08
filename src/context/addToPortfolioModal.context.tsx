@@ -1,6 +1,5 @@
 import React, {createContext, useState} from "react";
-import { CurrencySummary } from '../components/modals/зortfolioModalRow/PortfolioModalRow';
-
+import { CurrencySummary } from '../components/modals/portfolioModalRow/PortfolioModalRow';
 
 export interface AddToPortfolioModalContextState {
     shouldShowAddToPortfolioModal: boolean;
@@ -13,9 +12,9 @@ export const initialAddToPortfolioModalState = {
     id: "",
     name: "",
     symbol: "",
-    priceUsd: 0
-}
-
+    priceUsd: 0,
+    amount: 0,
+};
 export const AddToPortfolioModalContext = createContext({} as AddToPortfolioModalContextState);
 
 export const AddToPortfolioModalProvider = ({children}: { children: React.ReactNode }) => {

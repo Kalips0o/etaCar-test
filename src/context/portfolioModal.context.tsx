@@ -1,5 +1,5 @@
 import React, {createContext, useState} from "react";
-import { CurrencySummaryWithAmount } from '../components/modals/зortfolioModalRow/PortfolioModalRow';
+import { CurrencySummaryWithAmount } from '../components/modals/portfolioModalRow/PortfolioModalRow';
 
 
 export interface PortfolioModalContextState {

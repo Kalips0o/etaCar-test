@@ -23,6 +23,8 @@ function CryptoTable() {
 
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCrypto, setSelectedCrypto] = useState<Currency | null>(null);
+
     const itemsPerPage: number = 5;
 
     useEffect(() => {
@@ -46,9 +48,6 @@ function CryptoTable() {
     const endIndex: number = startIndex + itemsPerPage;
     const visibleCryptoData: Currency[] = cryptoData.slice(startIndex, endIndex);
 
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
 
     const handleModalOk = () => {
         setIsModalOpen(false);
@@ -58,6 +57,10 @@ function CryptoTable() {
         setIsModalOpen(false);
     };
 
+    const showModal = (crypto: Currency) => {
+        setSelectedCrypto(crypto);
+        setIsModalOpen(true);
+    };
     return (
         <div className={styles.container}>
             <div className={styles.row}>
@@ -73,7 +76,7 @@ function CryptoTable() {
                             <th scope='col'>Supply</th>
                             <th scope='col'>Volume (24Hr)</th>
                             <th scope='col'>%(24h)</th>
-                            <th scope='col'></th>
+                            <th scope='col'/>
                         </tr>
                         </thead>
                         <tbody>
@@ -96,7 +99,7 @@ function CryptoTable() {
                                         </span>
                                 </td>
                                 <td>
-                                    <Button type='text' onClick={showModal}>
+                                    <Button type='text' onClick={() => showModal(crypto)}>
                                         <PlusCircleOutlined className={styles.plusIcon} />
                                     </Button>
                                 </td>
@@ -111,6 +114,7 @@ function CryptoTable() {
                 visible={isModalOpen}
                 onCancel={handleModalCancel}
                 onOk={handleModalOk}
+                selectedCrypto={selectedCrypto} // Pass the selected cryptocurrency data
             />
         </div>
     );
