@@ -4,6 +4,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {PaginationProvider} from "./context/pagination.context";
+import { PortfolioModalProvider } from './context/portfolioModal.context';
+import { AddToPortfolioModalProvider } from './context/addToPortfolioModal.context';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -11,7 +13,11 @@ const root = ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
         <PaginationProvider>
-        <App/>
+            <PortfolioModalProvider>
+                <AddToPortfolioModalProvider>
+                    <App />
+                </AddToPortfolioModalProvider>
+            </PortfolioModalProvider>
         </PaginationProvider>
     </BrowserRouter>
 );
