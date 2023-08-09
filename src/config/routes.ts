@@ -1,5 +1,6 @@
 enum Routes {
-    CurrencyTable = '/currency-table'
+    CurrencyStatistics = "/currency-statistics",
+    CurrencyTable = "/currency-table"
 }
 
 export default Routes;

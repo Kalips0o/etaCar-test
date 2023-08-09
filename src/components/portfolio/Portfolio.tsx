@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
-import axios from "axios";
-import PortfolioModal from "../modals/portfolioModal/PortfolioModal";
-import styles from "./Portfolio.module.scss";
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import PortfolioModal from '../modals/portfolioModal/PortfolioModal';
+import styles from './Portfolio.module.scss';
 import { PortfolioModalContext, PortfolioModalContextState } from '../../context/portfolioModal.context';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
@@ -13,7 +13,7 @@ function Portfolio() {
         lastAddedCurrencyToPortfolio,
         currencyPortfolioRows,
         setCurrencyPortfolioRows,
-        setShouldShowPortfolioModal
+        setShouldShowPortfolioModal,
     } = useContext<PortfolioModalContextState>(PortfolioModalContext);
 
     const [currentCurrencyData, setCurrentCurrencyData] = useState<Currency[]>([]);
@@ -22,34 +22,34 @@ function Portfolio() {
 
     const preparePortfolioText = (): string => {
         const difference = currentTotalPrice - totalPrice;
-        const differenceSign = difference > 0 ? "+" : "";
+        const differenceSign = difference > 0 ? '+' : '';
         const differenceUsd = formatNumber(difference);
         const differencePercentage = formatNumber(difference / totalPrice * 100);
         return `${formatNumber(totalPrice)} USD ${differenceSign}${differenceUsd} (${differenceSign}${differencePercentage}%)`;
-    }
+    };
 
     useEffect((): void => {
 
 
         axios.get('https://api.coincap.io/v2/assets', {
             params: {
-                ids: currencyPortfolioRows ? currencyPortfolioRows.map(row => row.id).join(',') : []
-            }
+                ids: currencyPortfolioRows ? currencyPortfolioRows.map(row => row.id).join(',') : [],
+            },
         }).then(res => {
             setCurrentCurrencyData(res.data.data);
         }).catch(err => {
 
-        })
+        });
     }, []);
 
     useEffect((): void => {
         if (currencyPortfolioRows.length) {
-            localStorage.setItem("currencyPortfolioRows", JSON.stringify(currencyPortfolioRows));
+            localStorage.setItem('currencyPortfolioRows', JSON.stringify(currencyPortfolioRows));
         }
     }, [currencyPortfolioRows]);
 
     useEffect((): void => {
-        const storedPortfolioData = localStorage.getItem("currencyPortfolioRows");
+        const storedPortfolioData = localStorage.getItem('currencyPortfolioRows');
         const portfolioData: CurrencySummaryWithAmount[] = storedPortfolioData ? JSON.parse(storedPortfolioData) : [];
         const existingRow = portfolioData.find(row => row.id === lastAddedCurrencyToPortfolio.id);
 
@@ -59,14 +59,14 @@ function Portfolio() {
                     return {
                         ...row,
                         priceUsd: row.priceUsd + lastAddedCurrencyToPortfolio.priceUsd,
-                        amount: row.amount + lastAddedCurrencyToPortfolio.amount
+                        amount: row.amount + lastAddedCurrencyToPortfolio.amount,
                     };
                 }
                 return row;
             });
             setCurrencyPortfolioRows(updatedPortfolioData);
         } else {
-            if (lastAddedCurrencyToPortfolio.id !== "") {
+            if (lastAddedCurrencyToPortfolio.id !== '') {
                 setCurrencyPortfolioRows([...portfolioData, lastAddedCurrencyToPortfolio]);
             } else {
                 setCurrencyPortfolioRows([...portfolioData]);
@@ -78,7 +78,7 @@ function Portfolio() {
         setTotalPrice(currencyPortfolioRows.reduce((acc, curr) => {
             return acc + curr.priceUsd;
         }, 0));
-    }, [currencyPortfolioRows])
+    }, [currencyPortfolioRows]);
 
     useEffect((): void => {
         setCurrentTotalPrice(currentCurrencyData.reduce((acc, curr) => {
@@ -86,12 +86,12 @@ function Portfolio() {
             const currentCurrencySummaryWithAmountAmount = currencyPortfolioRow ? currencyPortfolioRow.amount : 0;
             return acc + parseFloat(curr.priceUsd) * currentCurrencySummaryWithAmountAmount;
         }, 0));
-    }, [currencyPortfolioRows, currentCurrencyData])
+    }, [currencyPortfolioRows, currentCurrencyData]);
 
     return (
         <div>
             <button className={styles.portfolio_button} onClick={() => setShouldShowPortfolioModal(true)}>
-                {lastAddedCurrencyToPortfolio.id !== ""
+                {lastAddedCurrencyToPortfolio.id !== ''
                     ? <div>
                         {lastAddedCurrencyToPortfolio.name}
                         ({lastAddedCurrencyToPortfolio.symbol})

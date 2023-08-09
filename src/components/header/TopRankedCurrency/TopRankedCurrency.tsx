@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {formatNumber} from "../../../utils/formatters";
 import ClientRoutes from "../../../config/routes";
 import styles from './TopRankedCurrency.module.scss'
@@ -19,11 +19,11 @@ function TopRankedCurrency({
                            }: TopRankedCurrencyProps) {
 
     return (
-        <Link className={styles.currencyNavbar} to={`${ClientRoutes.CurrencyTable}?id=${id}`}>
+        <Link   className={styles.currencyNavbar} to={`${ClientRoutes.CurrencyStatistics}?id=${id}`}>
             <div>{name} ({symbol})</div>
             <div>${formatNumber(priceUsd)}</div>
         </Link>
-    );
+   );
 }
 
 export default TopRankedCurrency;

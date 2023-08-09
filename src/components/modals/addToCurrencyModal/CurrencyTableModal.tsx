@@ -30,12 +30,12 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
                 id: selectedCrypto.id,
                 name: selectedCrypto.name,
                 symbol: selectedCrypto.symbol,
-                priceUsd: parseFloat(selectedCrypto.priceUsd) * parsedValue, // Parse the priceUsd to a number
-                amount: parsedValue  // Multiply by the price
+                priceUsd: parseFloat(selectedCrypto.priceUsd) * parsedValue,
+                amount: parsedValue
             };
 
             setLastAddedCurrencyToPortfolio(newCurrency);
-            onOk();
+            onOk(); // Close the modal
             setInputValue('');
         } else {
             console.error('Input value is not within the allowed range.');

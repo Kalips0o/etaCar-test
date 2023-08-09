@@ -1,48 +1,69 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import styles from './Pagination.module.scss';
 
+interface PaginationProps {
+    currentPage: number;
+    totalPages: number;
+    pageNumbers: number[];
+    handlePrevPaginationTabClick: () => void;
+    handleNextPaginationTabClick: () => void;
+    setCurrentPage: (page: number) => void;
+}
 
-import paginationStyles from './Pagination.module.scss';
-import { PaginationContext, PaginationContextState } from '../../context/pagination.context';
-
-function Pagination() {
-    const {
-        currentPage,
-        setCurrentPage,
-        totalPages,
-        pageNumbers,
-    } = useContext<PaginationContextState>(PaginationContext);
-
+function Pagination({
+                        currentPage,
+                        totalPages,
+                        pageNumbers,
+                        handlePrevPaginationTabClick,
+                        handleNextPaginationTabClick,
+                        setCurrentPage,
+                    }: PaginationProps) {
     const preparePaginationTabClassName = (page: number): string => {
         if (page === currentPage) {
-            return `${paginationStyles.pagination_element} ${paginationStyles.active}`;
+            return `${styles.pagination_element} ${styles.active}`;
         }
-        return `${paginationStyles.pagination_element}`;
+        return `${styles.pagination_element}`;
     };
 
-    const handleNextPaginationTabClick = (): void => {
-        if (currentPage !== totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const handlePrevPaginationTabClick = (): void => {
-        if (currentPage !== 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
+    // Определение, какие страницы показать в пагинации
+    let visiblePages: number[] = [];
+    if (totalPages <= 5) {
+        visiblePages = pageNumbers;
+    } else if (currentPage <= 3) {
+        visiblePages = pageNumbers.slice(0, 5);
+    } else if (currentPage >= totalPages - 2) {
+        visiblePages = pageNumbers.slice(totalPages - 5);
+    } else {
+        visiblePages = pageNumbers.slice(currentPage - 3, currentPage + 2);
+    }
 
     return (
-        <div className={paginationStyles.pagination}>
-            <div className={paginationStyles.pagination_element}
-                 onClick={() => handlePrevPaginationTabClick()}>&#60;</div>
-            {pageNumbers.map((page, index) => (
-                page === 0
-                    ? <div className={paginationStyles.pagination_dots} key={index}>...</div>
-                    : <div className={preparePaginationTabClassName(page)} key={index}
-                           onClick={() => setCurrentPage(page)}>{page}</div>
+        <div className={styles.pagination}>
+            <div
+                className={styles.pagination_element}
+                onClick={() => handlePrevPaginationTabClick()}
+            >
+                &#60;
+            </div>
+            {visiblePages.map((page, index) => (
+                page === 0 ? (
+                    <div className={styles.pagination_dots} key={index}>...</div>
+                ) : (
+                    <div
+                        className={preparePaginationTabClassName(page)}
+                        key={index}
+                        onClick={() => setCurrentPage(page)}
+                    >
+                        {page}
+                    </div>
+                )
             ))}
-            <div className={paginationStyles.pagination_element}
-                 onClick={() => handleNextPaginationTabClick()}>&#62;</div>
+            <div
+                className={styles.pagination_element}
+                onClick={() => handleNextPaginationTabClick()}
+            >
+                &#62;
+            </div>
         </div>
     );
 }

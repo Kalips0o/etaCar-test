@@ -1,35 +1,31 @@
-import React, { useState, useEffect, useContext } from 'react';
-import styles from './CurrencyTable.module.scss';
+import React, { useState, useEffect } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
 import { Button } from 'antd';
 import Pagination from '../pagination/Pagination';
-import { PaginationContext, PaginationContextState } from '../../context/pagination.context';
 import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
+import { baseUrl } from '../../api/baseUrl';
+import styles from './CurrencyTable.module.scss';
+
 
 interface ApiResponse {
     data: Currency[];
 }
 
 function CryptoTable() {
-    const {
-        currentPage,
-        setPagination,
-        totalPages,
-        setTotalPages,
-    } = useContext<PaginationContextState>(PaginationContext);
-
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCrypto, setSelectedCrypto] = useState<Currency | null>(null);
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     const itemsPerPage: number = 5;
 
     useEffect(() => {
         axios
-            .get<ApiResponse>('https://api.coincap.io/v2/assets')
+            .get<ApiResponse>(`${baseUrl}assets`)
             .then(response => {
                 setCryptoData(response.data.data);
                 const calculatedTotalPages = Math.ceil(response.data.data.length / itemsPerPage);
@@ -40,14 +36,21 @@ function CryptoTable() {
             });
     }, []);
 
-    useEffect(() => {
-        setPagination();
-    }, [totalPages, currentPage]);
+    const handlePrevPaginationTabClick = () => {
+        if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const handleNextPaginationTabClick = () => {
+        if (currentPage !== totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
 
     const startIndex: number = (currentPage - 1) * itemsPerPage;
     const endIndex: number = startIndex + itemsPerPage;
     const visibleCryptoData: Currency[] = cryptoData.slice(startIndex, endIndex);
-
 
     const handleModalOk = () => {
         setIsModalOpen(false);
@@ -61,6 +64,9 @@ function CryptoTable() {
         setSelectedCrypto(crypto);
         setIsModalOpen(true);
     };
+
+    const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
     return (
         <div className={styles.container}>
             <div className={styles.row}>
@@ -76,16 +82,21 @@ function CryptoTable() {
                             <th scope='col'>Supply</th>
                             <th scope='col'>Volume (24Hr)</th>
                             <th scope='col'>%(24h)</th>
-                            <th scope='col'/>
+                            <th scope='col' />
                         </tr>
                         </thead>
                         <tbody>
                         {visibleCryptoData.map((crypto, index) => (
+
+
                             <tr key={crypto.id} className={styles.text}>
                                 <td>{crypto.rank}</td>
+
+
                                 <td>
                                     <span className={styles.textCrypto}>{crypto.name}</span>
                                 </td>
+
                                 <td>{crypto.symbol}</td>
                                 <td>{formatNumber(parseFloat(crypto.marketCapUsd))}</td>
                                 <td className={styles.textWarning}>{formatNumber(parseFloat(crypto.priceUsd))}</td>
@@ -107,7 +118,14 @@ function CryptoTable() {
                         ))}
                         </tbody>
                     </table>
-                    <Pagination />
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        pageNumbers={pageNumbers}
+                        handlePrevPaginationTabClick={handlePrevPaginationTabClick}
+                        handleNextPaginationTabClick={handleNextPaginationTabClick}
+                        setCurrentPage={setCurrentPage}
+                    />
                 </div>
             </div>
             <CurrencyTableModal

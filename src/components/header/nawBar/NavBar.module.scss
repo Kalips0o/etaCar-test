@@ -4,27 +4,20 @@
   justify-content: space-between;
 }
 
-.companyName {
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: black;
-
-
-  &:hover {
-    color: #e73919;
-  }
+.company_logo {
+ width: 220px;
+  height: 80px;
 }
 
 
-.navbarCenter {
+.navbar_center {
   display: flex;
   flex-direction: row;
   align-items: center;
 
 }
 
-.navbarRight {
+.navbar_right {
   display: inline-block;
   font-size: 18px;
   padding: 12px;
