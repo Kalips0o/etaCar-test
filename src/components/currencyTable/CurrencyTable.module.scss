@@ -5,12 +5,12 @@
  }
 
 .cryptoTable {
-  margin-top: 30px;
-  margin-bottom:30px ;
-  width: 1100px;
+  margin-top: 1.875rem;
+  margin-bottom:1.875rem ;
+  width: 68.75rem;
   border-collapse: separate;
   border-spacing: 0 1em;
-  font-size: 20px;
+  font-size: 1.25rem;
 
   thead {
 
@@ -34,15 +34,15 @@
       -webkit-border-radius: 0 10px 10px 0;
     }
     td img {
-      width: 25px;
-      height: 25px;
+      width: 1.5625rem;
+      height: 1.5625rem;
     }
   }
 }
 
-.plusIcon svg{
-  width: 20px;
-  height: 20px;
+.plus_icon svg{
+  width:  1.25rem;
+  height:  1.25rem;
   color: #282c34;
 }
 
@@ -59,4 +59,8 @@
 }
 .link:hover{
   color: rgba(243, 43, 3, 0.66);
+}
+
+@media (max-width: 768px) {
+
 }

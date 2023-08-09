@@ -143,7 +143,7 @@ function CryptoTable() {
                                 </td>
                                 <td>
                                     <Button type='text' onClick={() => showModal(crypto)}>
-                                        <PlusCircleOutlined className={styles.plusIcon} />
+                                        <PlusCircleOutlined className={styles.plus_icon} />
                                     </Button>
                                 </td>
                             </tr>
