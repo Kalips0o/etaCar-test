@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/etaCar-test/static/css/main.3bbe53ae.css",
-    "main.js": "/etaCar-test/static/js/main.86f1740c.js",
+    "main.css": "/etaCar-test/static/css/main.a7f6ff1b.css",
+    "main.js": "/etaCar-test/static/js/main.cb39822c.js",
     "static/js/787.479f3512.chunk.js": "/etaCar-test/static/js/787.479f3512.chunk.js",
     "static/media/pngwing.com.png": "/etaCar-test/static/media/pngwing.com.d438aa64826a1c0028a0.png",
     "index.html": "/etaCar-test/index.html",
-    "main.3bbe53ae.css.map": "/etaCar-test/static/css/main.3bbe53ae.css.map",
-    "main.86f1740c.js.map": "/etaCar-test/static/js/main.86f1740c.js.map",
+    "main.a7f6ff1b.css.map": "/etaCar-test/static/css/main.a7f6ff1b.css.map",
+    "main.cb39822c.js.map": "/etaCar-test/static/js/main.cb39822c.js.map",
     "787.479f3512.chunk.js.map": "/etaCar-test/static/js/787.479f3512.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3bbe53ae.css",
-    "static/js/main.86f1740c.js"
+    "static/css/main.a7f6ff1b.css",
+    "static/js/main.cb39822c.js"
   ]
 }
