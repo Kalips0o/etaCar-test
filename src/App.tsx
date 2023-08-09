@@ -6,6 +6,7 @@ import CurrencyStatistics from './components/сurrencyStatistics/CurrencyStatist
 
 import Stats from './components/stats/Stats';
 import Header from './components/header/Header';
+import NewCurrencyTable from './components/currencyTable/NewCurrencyTable';
 
 
 function App() {

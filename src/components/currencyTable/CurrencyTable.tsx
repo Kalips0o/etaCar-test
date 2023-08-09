@@ -7,6 +7,8 @@ import Pagination from '../pagination/Pagination';
 import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
 import styles from './CurrencyTable.module.scss';
 import { fetchCryptoData } from '../../api/baseUrl';
+import { Link } from 'react-router-dom';
+import ClientRoutes from '../../config/routes';
 
 
 function CryptoTable() {
@@ -82,24 +84,62 @@ function CryptoTable() {
                         <tbody>
                         {visibleCryptoData.map((crypto) => (
                             <tr key={crypto.id} className={styles.text}>
-                                <td>{crypto.rank}</td>
+                                <td><Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}> {crypto.rank}</Link>
+                                </td>
 
 
                                 <td>
-                                    <span className={styles.textCrypto}>{crypto.name}</span>
+                                    <span className={styles.textCrypto}>
+                                        <Link key={crypto.id} className={styles.link}
+                                              to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+                                        {crypto.name}</Link>
+                                    </span>
                                 </td>
 
-                                <td>{crypto.symbol}</td>
-                                <td>{formatNumber(parseFloat(crypto.marketCapUsd))}</td>
-                                <td className={styles.textWarning}>{formatNumber(parseFloat(crypto.priceUsd))}</td>
-                                <td className={styles.textWarning}>{formatNumber(parseFloat(crypto.supply))}</td>
-                                <td className={styles.textSuccess}>{formatNumber(parseFloat(crypto.vwap24Hr))}</td>
+                                <td>
+                                    <Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+                                        {crypto.symbol}
+                                    </Link>
+                                </td>
+
+                                <td>
+                                    <Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+                                        {formatNumber(parseFloat(crypto.marketCapUsd))}
+                                    </Link>
+                                </td>
+
+                                <td className={styles.textWarning}>
+                                    <Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+                                        {formatNumber(parseFloat(crypto.priceUsd))}
+                                    </Link>
+                                </td>
+                                <td className={styles.textWarning}>
+                                    <Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+                                        {formatNumber(parseFloat(crypto.supply))}
+                                    </Link>
+                                </td>
+
+                                <td className={styles.textSuccess}>
+                                    <Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+                                        {formatNumber(parseFloat(crypto.vwap24Hr))}
+                                    </Link>
+                                </td>
+
                                 <td className={`${styles.Change24Hr} ${parseFloat(crypto.changePercent24Hr) > 0 ? styles.textSuccess : styles.textDanger}`}>
+                                    <Link key={crypto.id} className={styles.link}
+                                          to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
                                         <span
                                             style={{ color: parseFloat(crypto.changePercent24Hr) > 0 ? 'green' : 'red' }}>
                                             {parseFloat(crypto.changePercent24Hr) > 0 ? '+' : '-'}
                                             {formatNumber(Math.abs(parseFloat(crypto.changePercent24Hr)))}
                                         </span>
+                                    </Link>
                                 </td>
                                 <td>
                                     <Button type='text' onClick={() => showModal(crypto)}>
