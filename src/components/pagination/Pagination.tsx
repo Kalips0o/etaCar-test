@@ -25,8 +25,7 @@ function Pagination({
         return `${styles.pagination_element}`;
     };
 
-    // Определение, какие страницы показать в пагинации
-    let visiblePages: number[] = [];
+    let visiblePages: number[];
     if (totalPages <= 5) {
         visiblePages = pageNumbers;
     } else if (currentPage <= 3) {

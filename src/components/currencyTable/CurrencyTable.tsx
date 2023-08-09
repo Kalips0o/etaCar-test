@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
-import axios from 'axios';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
 import { Button } from 'antd';
 import Pagination from '../pagination/Pagination';
 import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
-import { baseUrl } from '../../api/baseUrl';
 import styles from './CurrencyTable.module.scss';
+import { fetchCryptoData } from '../../api/baseUrl';
 
-
-interface ApiResponse {
-    data: Currency[];
-}
 
 function CryptoTable() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
@@ -24,11 +19,10 @@ function CryptoTable() {
     const itemsPerPage: number = 5;
 
     useEffect(() => {
-        axios
-            .get<ApiResponse>(`${baseUrl}assets`)
-            .then(response => {
-                setCryptoData(response.data.data);
-                const calculatedTotalPages = Math.ceil(response.data.data.length / itemsPerPage);
+        fetchCryptoData()
+            .then(data => {
+                setCryptoData(data.data);
+                const calculatedTotalPages = Math.ceil(data.data.length / itemsPerPage);
                 setTotalPages(calculatedTotalPages);
             })
             .catch(error => {
@@ -86,9 +80,7 @@ function CryptoTable() {
                         </tr>
                         </thead>
                         <tbody>
-                        {visibleCryptoData.map((crypto, index) => (
-
-
+                        {visibleCryptoData.map((crypto) => (
                             <tr key={crypto.id} className={styles.text}>
                                 <td>{crypto.rank}</td>
 

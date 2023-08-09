@@ -6,6 +6,7 @@ import { PortfolioModalContext, PortfolioModalContextState } from '../../context
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
 import { CurrencySummaryWithAmount } from '../modals/portfolioModalRow/PortfolioModalRow';
+import { fetchDataAndUpdateState } from '../../api/baseUrl';
 
 
 function Portfolio() {
@@ -28,19 +29,10 @@ function Portfolio() {
         return `${formatNumber(totalPrice)} USD ${differenceSign}${differenceUsd} (${differenceSign}${differencePercentage}%)`;
     };
 
-    useEffect((): void => {
-
-
-        axios.get('https://api.coincap.io/v2/assets', {
-            params: {
-                ids: currencyPortfolioRows ? currencyPortfolioRows.map(row => row.id).join(',') : [],
-            },
-        }).then(res => {
-            setCurrentCurrencyData(res.data.data);
-        }).catch(err => {
-
-        });
-    }, []);
+    useEffect(() => {
+        const ids = currencyPortfolioRows.map(row => row.id);
+        fetchDataAndUpdateState(ids, setCurrentCurrencyData);
+    }, [currencyPortfolioRows]);
 
     useEffect((): void => {
         if (currencyPortfolioRows.length) {

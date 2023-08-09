@@ -8,7 +8,7 @@ interface CurrencyTableModalProps {
     visible: boolean;
     onOk: () => void;
     onCancel: () => void;
-    selectedCrypto: Currency | null; // Add this prop
+    selectedCrypto: Currency | null;
 }
 
 const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCancel, onOk, selectedCrypto }) => {
@@ -31,7 +31,7 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
                 name: selectedCrypto.name,
                 symbol: selectedCrypto.symbol,
                 priceUsd: parseFloat(selectedCrypto.priceUsd) * parsedValue,
-                amount: parsedValue
+                amount: parsedValue,
             };
 
             setLastAddedCurrencyToPortfolio(newCurrency);

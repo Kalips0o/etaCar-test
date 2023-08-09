@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { formatNumber } from "../../utils/formatters";
 import { StatsContext, StatsContextState } from "../../context/stats.context";
+import { fetchCryptoStats } from '../../api/baseUrl';
 
 export interface CurrencyChartPoint {
     date: string;
@@ -31,18 +32,10 @@ function CurrencyChart() {
         const timeNow = Date.now();
         const MONTH_MILLISECONDS = 2_592_000_000;
         const timeMonthAgo = timeNow - MONTH_MILLISECONDS;
-        const COIN_CAP_API_URL = "https://api.coincap.io/v2/";
 
-        axios
-            .get(`${COIN_CAP_API_URL}assets/${searchParams.get("id")}/history`, {
-                params: {
-                    interval: "d1",
-                    end: timeNow,
-                    start: timeMonthAgo,
-                },
-            })
-            .then((res) => {
-                setCurrencyChartData(res.data.data);
+        fetchCryptoStats(searchParams.get("id"), "d1", timeMonthAgo, timeNow)
+            .then((data) => {
+                setCurrencyChartData(data);
             })
             .catch((err) => {
                 setErrorMessage(err);
