@@ -132,7 +132,7 @@ function CryptoTable() {
                 visible={isModalOpen}
                 onCancel={handleModalCancel}
                 onOk={handleModalOk}
-                selectedCrypto={selectedCrypto} // Pass the selected cryptocurrency data
+                selectedCrypto={selectedCrypto}
             />
         </div>
     );
