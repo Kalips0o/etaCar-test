@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { PlusCircleOutlined } from '@ant-design/icons';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
-import { Button } from 'antd';
 import Pagination from '../pagination/Pagination';
 import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
 import styles from './CurrencyTable.module.scss';
 import { fetchCryptoData } from '../../api/Api';
 import { Link } from 'react-router-dom';
 import ClientRoutes from '../../config/routes';
+import PlusIcon from './../../assets/plusIcon.png'
 
 
 function CryptoTable() {
@@ -142,9 +141,9 @@ function CryptoTable() {
                                     </Link>
                                 </td>
                                 <td>
-                                    <Button type='text' onClick={() => showModal(crypto)}>
-                                        <PlusCircleOutlined className={styles.plus_icon} />
-                                    </Button>
+                                    <button className={styles.plus_icon} onClick={() => showModal(crypto)}>
+                                        <img src={PlusIcon}  alt='plus icon'/>
+                                    </button>
                                 </td>
                             </tr>
                         ))}

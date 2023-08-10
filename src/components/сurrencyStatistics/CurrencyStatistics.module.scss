@@ -77,10 +77,12 @@
   }
 }
 
-.adaptiv_back_button {
+.adaptive_back_button { border-style: none;
+  appearance: none;
   display: none;
   background-color: #e73919;
   width: 98px;
+  height: 29px;
   margin-left: 10px;
   color: white;
   border-radius: 24px;
@@ -120,7 +122,7 @@
     margin: 0 10px;
     font-size: 15px;
   }
-  .adaptiv_back_button {
+  .adaptive_back_button {
     display: block;
   }
 }

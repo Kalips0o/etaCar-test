@@ -15,7 +15,7 @@ export const fetchCryptoData = async () => {
 };
 
 
-export const fetchCryptoStats = async (id: string | null, interval: string, start: number, end: number) => {
+export const fetchCryptoStats = async (id , interval, start, end) => {
     try {
         const response = await axios.get(`${api}assets/${id}/history`, {
             params: {
@@ -31,7 +31,7 @@ export const fetchCryptoStats = async (id: string | null, interval: string, star
     }
 };
 
-export function fetchDataAndUpdateState(ids: any[], setCurrentCurrencyData: (arg0: any) => void) {
+export function fetchDataAndUpdateState(ids, setCurrentCurrencyData) {
     axios.get('https://api.coincap.io/v2/assets', {
         params: {
             ids: ids.join(','),

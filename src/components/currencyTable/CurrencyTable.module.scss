@@ -1,5 +1,4 @@
 
-
 .row {
   width: 100%;
   display: flex;
@@ -46,10 +45,13 @@
   height: 1.5625rem;
 }
 
-.plus_icon svg {
+.plus_icon  {
+  border: none;
+  color: #282c34;
+}
+.plus_icon img{
   width: 1.25rem;
   height: 1.25rem;
-  color: #282c34;
 }
 
 .textCrypto {
@@ -80,10 +82,11 @@
     border-spacing: 0;
     font-size: 0.8rem;
   }
-  .plus_icon svg {
+  .plus_icon {
     width: 1rem;
     height: 1rem;
   }
+
   .cryptoTable thead th {
     align-items: initial;
     font-size: 0.8rem;

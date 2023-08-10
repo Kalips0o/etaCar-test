@@ -10,7 +10,7 @@ import CryptoChart from '../сryptoСhart/СryptoСhart';
 import PortfolioModal from '../modals/portfolioModal/PortfolioModal';
 import { api } from '../../api/Api';
 import AddToPortfolio from '../portfolio/AddToPortfolio';
-import { Button } from 'antd';
+
 
 function CurrencyStatistics() {
     const { setErrorMessage, setShouldShowStats } = useContext<StatsContextState>(StatsContext);
@@ -96,7 +96,7 @@ function CurrencyStatistics() {
                             </a>
                             <AddToPortfolio {...prepareCurrencySummary(currencyStatisticsData)} />
                             <PortfolioModal />
-                            <NavLink to={'/'}><Button className={styles.adaptiv_back_button}> Back </Button> </NavLink>
+                            <NavLink to={'/'}><button className={styles.adaptive_back_button}> Back </button> </NavLink>
                         </div>
                     </>
                 )}
