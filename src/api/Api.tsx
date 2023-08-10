@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const baseUrl = 'https://api.coincap.io/v2/';
+export const api = 'https://api.coincap.io/v2/';
 const assetsEndpoint = 'assets';
 
 export const fetchCryptoData = async () => {
     try {
-        const response = await axios.get(`${baseUrl}${assetsEndpoint}`);
+        const response = await axios.get(`${api}${assetsEndpoint}`);
         return response.data;
 
     } catch (error) {
@@ -17,7 +17,7 @@ export const fetchCryptoData = async () => {
 
 export const fetchCryptoStats = async (id: string | null, interval: string, start: number, end: number) => {
     try {
-        const response = await axios.get(`${baseUrl}assets/${id}/history`, {
+        const response = await axios.get(`${api}assets/${id}/history`, {
             params: {
                 interval,
                 start,

@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import Pagination from '../pagination/Pagination';
 import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
 import styles from './CurrencyTable.module.scss';
-import { fetchCryptoData } from '../../api/baseUrl';
+import { fetchCryptoData } from '../../api/Api';
 import { Link } from 'react-router-dom';
 import ClientRoutes from '../../config/routes';
 
@@ -64,20 +64,20 @@ function CryptoTable() {
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
     return (
-        <div className={styles.container}>
+
             <div className={styles.row}>
-                <div className={styles.colMd12}>
+
                     <table className={styles.cryptoTable}>
                         <thead>
                         <tr>
                             <th scope='col'>#</th>
-                            <th scope='col'>Name</th>
+                            <th scope='col'>Name </th>
                             <th scope='col'>Symbol</th>
                             <th scope='col'>Market Cap</th>
-                            <th scope='col'>Price</th>
-                            <th scope='col'>Supply</th>
+                            <th scope='col'>Price </th>
+                            <th scope='col'>Supply </th>
                             <th scope='col'>Volume (24Hr)</th>
-                            <th scope='col'>%(24h)</th>
+                            <th scope='col'>%(24h) </th>
                             <th scope='col' />
                         </tr>
                         </thead>
@@ -158,8 +158,8 @@ function CryptoTable() {
                         handleNextPaginationTabClick={handleNextPaginationTabClick}
                         setCurrentPage={setCurrentPage}
                     />
-                </div>
-            </div>
+
+
             <CurrencyTableModal
                 visible={isModalOpen}
                 onCancel={handleModalCancel}

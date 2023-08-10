@@ -1,3 +1,4 @@
+/* Общие стили */
 .pagination {
   list-style-type: none;
   padding: 0;
@@ -9,6 +10,7 @@
   font-size: 18px;
 }
 
+/* Стили для элементов пагинации */
 .pagination_element {
   color: black;
   display: flex;
@@ -19,21 +21,22 @@
   border-radius: 50%;
   text-decoration: none;
   cursor: pointer;
-
-  &:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-
-  &:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-
-  &:hover:not(.active) {
-    background-color: #ddd;
-  }
 }
+
+.pagination_element:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination_element:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.pagination_element:hover:not(.active) {
+  background-color: #ddd;
+}
+
 .active {
   background: darkorange;
 }
@@ -44,15 +47,20 @@
   text-decoration: none;
 }
 
+/* Медиа-запрос для мобильных экранов */
 @media (max-width: 768px) {
   .pagination {
     font-size: 15px;
-  }
-  .pagination_dots {
-    padding: 4px 10px;
+    justify-content: center;
   }
 
   .pagination_element {
-    padding: 4px 10px;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+  }
+
+  .pagination_dots {
+    padding: 4px;
   }
 }

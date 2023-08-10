@@ -5,24 +5,48 @@
 }
 
 .company_logo {
- width: 13.75rem;
+  width: 13.75rem;
   height: 5rem;
 }
-
 
 .navbar_center {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
 .navbar_right {
   display: inline-block;
   font-size: 1.125rem;
   padding: 0.75rem;
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
 
   &:hover {
     color: grey;
+  }
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+  .navbar {
+
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .company_logo {
+    display: none;
+    margin-bottom: 1rem;
+    width: auto;
+  }
+
+  .navbar_center {
+    margin-bottom: 1rem;
+  }
+
+  .navbar_right {
+    margin-top: 1rem;
   }
 }

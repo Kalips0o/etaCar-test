@@ -6,7 +6,7 @@ import { PortfolioModalContext, PortfolioModalContextState } from '../../context
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
 import { CurrencySummaryWithAmount } from '../modals/portfolioModalRow/PortfolioModalRow';
-import { fetchDataAndUpdateState } from '../../api/baseUrl';
+import { fetchDataAndUpdateState } from '../../api/Api';
 
 
 function Portfolio() {

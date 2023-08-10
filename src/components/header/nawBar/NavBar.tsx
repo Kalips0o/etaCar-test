@@ -4,7 +4,7 @@ import { Currency } from '../../../types/apiTypes';
 import styles from './NavBar.module.scss';
 import logo from '../../../assets/pngwing.com.png';
 import Portfolio from '../../portfolio/Portfolio';
-import { fetchCryptoData } from '../../../api/baseUrl';
+import { fetchCryptoData } from '../../../api/Api';
 import { NavLink } from 'react-router-dom';
 
 interface TopRankedCurrencyProps {

@@ -1,66 +1,91 @@
-.container {
+
+
+.row {
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
- }
+}
 
 .cryptoTable {
-  margin-top: 1.875rem;
-  margin-bottom:1.875rem ;
   width: 68.75rem;
+  margin: 1.875rem;
   border-collapse: separate;
   border-spacing: 0 1em;
   font-size: 1.25rem;
-
-  thead {
-
-    th {
-      color: rgba(0, 0, 0, 0.55);
-    }
-  }
-  tbody tr {
-    background: #fff;
-    -webkit-box-shadow: 0 1px 15px 1px rgba(62, 57, 107, 0.07);
-    box-shadow: 0 1px 15px 1px rgba(62, 57, 107, 0.07);
-    td > * {
-      vertical-align: middle;
-    }
-    td:first-child {
-      -moz-border-radius: 10px 0 0 10px;
-      -webkit-border-radius: 10px 0 0 10px;
-    }
-    td:last-child {
-      -moz-border-radius: 0 10px 10px 0;
-      -webkit-border-radius: 0 10px 10px 0;
-    }
-    td img {
-      width: 1.5625rem;
-      height: 1.5625rem;
-    }
-  }
 }
 
-.plus_icon svg{
-  width:  1.25rem;
-  height:  1.25rem;
+.cryptoTable thead th {
+  color: rgba(0, 0, 0, 0.55);
+
+}
+
+.cryptoTable tbody tr {
+  background: #fff;
+  -webkit-box-shadow: 0 1px 15px 1px rgba(62, 57, 107, 0.07);
+  box-shadow: 0 1px 15px 1px rgba(62, 57, 107, 0.07);
+}
+
+.cryptoTable tbody tr td > * {
+  vertical-align: middle;
+}
+
+.cryptoTable tbody tr td:first-child {
+  -moz-border-radius: 10px 0 0 10px;
+  -webkit-border-radius: 10px 0 0 10px;
+}
+
+.cryptoTable tbody tr td:last-child {
+  -moz-border-radius: 0 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+}
+
+.cryptoTable tbody tr td img {
+  width: 1.5625rem;
+  height: 1.5625rem;
+}
+
+.plus_icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
   color: #282c34;
 }
 
-.textCrypto{
+.textCrypto {
   color: black;
 }
-.textCrypto:hover{
+
+.textCrypto:hover {
   color: rgba(243, 43, 3, 0.66);
 }
+
 .link {
   text-decoration: none;
   color: black;
   cursor: auto;
 }
-.link:hover{
+
+.link:hover {
   color: rgba(243, 43, 3, 0.66);
 }
 
-@media (max-width: 768px) {
+/* Медиа-запрос для мобильных экранов */
+@media screen and (max-width: 768px) {
+  .cryptoTable {
+    width:90%;
+    margin: 10px;
+    border-spacing: 0;
+    font-size: 0.8rem;
+  }
+  .plus_icon svg {
+    width: 1rem;
+    height: 1rem;
 
+  }
+  .cryptoTable thead th {
+
+    align-items: initial;
+    font-size: 0.8rem; /* Уменьшить размер шрифта заголовков */
+  }
 }

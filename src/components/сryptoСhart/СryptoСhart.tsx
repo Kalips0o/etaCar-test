@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import axios from "axios";
+
 
 import {
     CartesianGrid,
@@ -13,7 +13,9 @@ import {
 } from "recharts";
 import { formatNumber } from "../../utils/formatters";
 import { StatsContext, StatsContextState } from "../../context/stats.context";
-import { fetchCryptoStats } from '../../api/baseUrl';
+import { fetchCryptoStats } from '../../api/Api';
+import { Button } from 'antd';
+
 
 export interface CurrencyChartPoint {
     date: string;

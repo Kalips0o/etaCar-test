@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { formatNumber } from '../../utils/formatters';
 import styles from './CurrencyStatistics.module.scss';
@@ -8,8 +8,9 @@ import { CurrencySummary } from '../modals/portfolioModalRow/PortfolioModalRow';
 import { Currency } from '../../types/apiTypes';
 import CryptoChart from '../сryptoСhart/СryptoСhart';
 import PortfolioModal from '../modals/portfolioModal/PortfolioModal';
-import { baseUrl } from '../../api/baseUrl';
+import { api } from '../../api/Api';
 import AddToPortfolio from '../portfolio/AddToPortfolio';
+import { Button } from 'antd';
 
 function CurrencyStatistics() {
     const { setErrorMessage, setShouldShowStats } = useContext<StatsContextState>(StatsContext);
@@ -27,7 +28,7 @@ function CurrencyStatistics() {
 
     useEffect((): void => {
 
-        axios.get(`${baseUrl}assets`, {
+        axios.get(`${api}assets`, {
             params: {
                 ids: searchParams.get('id'),
             },
@@ -95,6 +96,7 @@ function CurrencyStatistics() {
                             </a>
                             <AddToPortfolio {...prepareCurrencySummary(currencyStatisticsData)} />
                             <PortfolioModal />
+                            <NavLink to={'/'}><Button className={styles.adaptiv_back_button}> Back </Button> </NavLink>
                         </div>
                     </>
                 )}
