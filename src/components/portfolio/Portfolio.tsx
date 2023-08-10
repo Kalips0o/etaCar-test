@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import PortfolioModal from '../modals/portfolioModal/PortfolioModal';
 import styles from './Portfolio.module.scss';
 import { PortfolioModalContext, PortfolioModalContextState } from '../../context/portfolioModal.context';
