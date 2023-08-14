@@ -4,26 +4,25 @@ import styles from './CurrencyStatistics.module.scss';
 import { formatNumber } from '../../utils/formatters';
 import CryptoChart from '../../components/сryptoСhart/СryptoСhart';
 import PortfolioModal from '../../components/modals/portfolioModal/PortfolioModal';
-
 import AddToPortfolio from '../../stories/portfolio/AddToPortfolio';
 import { useCurrencyStatistics } from '../../hooks/hooks';
-import { Currency } from '../../types/apiTypes';
-import { CurrencySummary } from '../../components/modals/portfolioModal/portfolioModalRow/PortfolioModalRow';
 
 
 function CurrencyStatistics() {
-    const prepareCurrencySummary = (currency: Currency): CurrencySummary => {
-        return {
-            id: currency.id,
-            name: currency.name,
-            symbol: currency.symbol,
-            priceUsd: parseFloat(currency.priceUsd),
-        };
-    };
     const [searchParams] = useSearchParams();
-
     const currencyId = searchParams.get('id');
     const currencyStatisticsData = useCurrencyStatistics(currencyId);
+
+    const currencySummary = React.useMemo(() => {
+        if (!currencyStatisticsData) return null;
+        const {
+            id,
+            name,
+            symbol,
+            priceUsd,
+        } = currencyStatisticsData;
+        return { id, name, symbol, priceUsd: parseFloat(priceUsd) };
+    }, [currencyStatisticsData]);
 
     return (
         <div className={styles.currency_info}>
@@ -79,9 +78,11 @@ function CurrencyStatistics() {
                                     More Details
                                 </button>
                             </a>
-                            <AddToPortfolio {...prepareCurrencySummary(currencyStatisticsData)} />
+                            {currencySummary && <AddToPortfolio {...currencySummary} />}
                             <PortfolioModal />
-                            <NavLink to={'/'}><button className={styles.adaptive_back_button}> Back </button> </NavLink>
+                            <NavLink to={'/'}>
+                                <button className={styles.adaptive_back_button}> Back </button>
+                            </NavLink>
                         </div>
                     </>
                 )}
@@ -89,7 +90,5 @@ function CurrencyStatistics() {
         </div>
     );
 }
-
-
 
 export default CurrencyStatistics;

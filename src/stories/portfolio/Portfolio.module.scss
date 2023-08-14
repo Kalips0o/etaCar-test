@@ -47,7 +47,21 @@
 
 @media (max-width: 768px) {
   .portfolio_button {
-    font-size: 15px;
+    font-size: 12px;
     padding: 5px 20px;
+  }.plus_icon_container {
+     padding: 3px 3px 0px;
+   }
+
+  .plus_icon {
+    padding: 8px;
+  }
+
+  .plus_icon img {
+    width: 1rem;
+    height: 1rem;
+  }
+  .navbar{
+    align-items: flex-start;
   }
 }

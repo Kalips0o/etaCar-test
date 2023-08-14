@@ -1,10 +1,10 @@
 import CryptoTable from '../../stories/table/CryptoTable';
-
+import styles from './MainPage.module.scss'
 
 function MainPage() {
 
     return (
-        <div>
+        <div className={styles.main}>
             <CryptoTable  />
         </div>
     );
