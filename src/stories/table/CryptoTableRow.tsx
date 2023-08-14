@@ -1,10 +1,10 @@
 import React from 'react';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
-import styles from './CurrencyTable.module.scss';
 import { Link } from 'react-router-dom';
 import ClientRoutes from '../../config/routes';
-import PlusIcon from './../../assets/plusIcon.png';
+import PlusIcon from '../../assets/plusIcon.png';
+import styles from './CryptoTableRow.module.scss'
 
 interface CryptoTableRowProps {
     crypto: Currency;
@@ -13,14 +13,14 @@ interface CryptoTableRowProps {
 
 function CryptoTableRow({ crypto, showModal }: CryptoTableRowProps) {
     return (
-        <tr key={crypto.id} className={styles.text}>
+        <tr key={crypto.id} >
             <td>
                 <Link key={crypto.id} className={styles.link} to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
                     {crypto.rank}
                 </Link>
             </td>
             <td>
-                <span className={styles.textCrypto}>
+                <span className={styles.text_crypto}>
                     <Link key={crypto.id} className={styles.link} to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
                         {crypto.name}
                     </Link>
@@ -36,17 +36,17 @@ function CryptoTableRow({ crypto, showModal }: CryptoTableRowProps) {
                     {formatNumber(parseFloat(crypto.marketCapUsd))}
                 </Link>
             </td>
-            <td className={styles.textWarning}>
+            <td >
                 <Link key={crypto.id} className={styles.link} to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
                     {formatNumber(parseFloat(crypto.priceUsd))}
                 </Link>
             </td>
-            <td className={styles.textWarning}>
+            <td >
                 <Link key={crypto.id} className={styles.link} to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
                     {formatNumber(parseFloat(crypto.supply))}
                 </Link>
             </td>
-            <td className={styles.textSuccess}>
+            <td >
                 <Link key={crypto.id} className={styles.link} to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
                     {formatNumber(parseFloat(crypto.vwap24Hr))}
                 </Link>

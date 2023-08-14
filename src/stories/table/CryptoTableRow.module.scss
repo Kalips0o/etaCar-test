@@ -1,0 +1,31 @@
+
+.link {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: rgba(243, 43, 3, 0.66);
+}
+
+
+.plus_icon {
+  border: none;
+  color: #282c34;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.plus_icon img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.text_crypto {
+  color: black;
+}
+
+.text_crypto:hover {
+  color: rgba(243, 43, 3, 0.66);
+}

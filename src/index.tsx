@@ -11,13 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <BrowserRouter>
-
         <PortfolioModalProvider>
             <AddToPortfolioModalProvider>
                 <App />
             </AddToPortfolioModalProvider>
         </PortfolioModalProvider>
-
     </BrowserRouter>,
 );
 

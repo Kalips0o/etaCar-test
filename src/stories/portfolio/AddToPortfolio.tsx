@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { CurrencySummary } from '../modals/portfolioModalRow/PortfolioModalRow';
-import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
+import { CurrencySummary } from '../../components/modals/portfolioModal/portfolioModalRow/PortfolioModalRow';
+import CurrencyTableModal from '../../components/modals/currencyModal/CurrencyTableModal';
 import { AddToPortfolioModalContext, AddToPortfolioModalContextState } from '../../context/addToPortfolioModal.context';
 import PlusIcon from '../../assets/plusIcon.png';
 import styles from './Portfolio.module.scss';

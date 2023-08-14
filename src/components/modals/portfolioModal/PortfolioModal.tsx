@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PortfolioModalRow from '../portfolioModalRow/PortfolioModalRow';
+import PortfolioModalRow from './portfolioModalRow/PortfolioModalRow';
 import styles from './PortfolioModal.module.scss';
 import { PortfolioModalContext, PortfolioModalContextState } from '../../../context/portfolioModal.context';
 

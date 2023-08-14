@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PortfolioModal from '../modals/portfolioModal/PortfolioModal';
+import PortfolioModal from '../../components/modals/portfolioModal/PortfolioModal';
 import styles from './Portfolio.module.scss';
 import { PortfolioModalContext, PortfolioModalContextState } from '../../context/portfolioModal.context';
 import { Currency } from '../../types/apiTypes';
 import { formatNumber } from '../../utils/formatters';
-import { CurrencySummaryWithAmount } from '../modals/portfolioModalRow/PortfolioModalRow';
+import { CurrencySummaryWithAmount } from '../../components/modals/portfolioModal/portfolioModalRow/PortfolioModalRow';
 import { fetchDataAndUpdateState } from '../../api/Api';
 
 

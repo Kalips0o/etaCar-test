@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Currency } from '../../types/apiTypes';
 import { fetchCryptoData } from '../../api/Api';
-import Pagination from '../pagination/Pagination';
-import CurrencyTableModal from '../modals/addToCurrencyModal/CurrencyTableModal';
+import Pagination from '../../components/pagination/Pagination';
 import CryptoTableRow from './CryptoTableRow';
 import styles from './CurrencyTable.module.scss';
+import CurrencyTableModal from '../../components/modals/currencyModal/CurrencyTableModal';
 
 function CryptoTable() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
@@ -60,7 +60,7 @@ function CryptoTable() {
 
     return (
         <div className={styles.row}>
-            <table className={styles.cryptoTable}>
+            <table className={styles.crypto_table}>
                 <thead>
                 <tr>
                     <th scope='col'>#</th>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import {formatNumber} from "../../../utils/formatters";
-import ClientRoutes from "../../../config/routes";
+import {formatNumber} from "../../utils/formatters";
+import ClientRoutes from "../../config/routes";
 import styles from './TopRankedCurrency.module.scss'
 
 

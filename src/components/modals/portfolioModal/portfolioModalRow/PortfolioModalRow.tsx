@@ -5,8 +5,8 @@ import {
     initialCurrencyPortfolioRowState,
     PortfolioModalContext,
     PortfolioModalContextState,
-} from '../../../context/portfolioModal.context';
-import { formatNumber } from '../../../utils/formatters';
+} from '../../../../context/portfolioModal.context';
+import { formatNumber } from '../../../../utils/formatters';
 
 export interface CurrencySummary {
     id: string,

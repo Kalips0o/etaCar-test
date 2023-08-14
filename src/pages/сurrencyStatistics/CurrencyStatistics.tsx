@@ -4,12 +4,12 @@ import axios from 'axios';
 import { formatNumber } from '../../utils/formatters';
 import styles from './CurrencyStatistics.module.scss';
 import { StatsContext, StatsContextState } from '../../context/stats.context';
-import { CurrencySummary } from '../modals/portfolioModalRow/PortfolioModalRow';
+import { CurrencySummary } from '../../components/modals/portfolioModal/portfolioModalRow/PortfolioModalRow';
 import { Currency } from '../../types/apiTypes';
-import CryptoChart from '../сryptoСhart/СryptoСhart';
-import PortfolioModal from '../modals/portfolioModal/PortfolioModal';
+import CryptoChart from '../../components/сryptoСhart/СryptoСhart';
+import PortfolioModal from '../../components/modals/portfolioModal/PortfolioModal';
 import { api } from '../../api/Api';
-import AddToPortfolio from '../portfolio/AddToPortfolio';
+import AddToPortfolio from '../../stories/portfolio/AddToPortfolio';
 
 
 function CurrencyStatistics() {

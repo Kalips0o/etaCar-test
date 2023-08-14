@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 
-import CurrencyStatistics from './components/сurrencyStatistics/CurrencyStatistics';
+import CurrencyStatistics from './pages/сurrencyStatistics/CurrencyStatistics';
 
-import Stats from './components/stats/Stats';
+import Stats from './stories/stats/Stats';
 import Header from './components/header/Header';
-import CryptoTable from './components/currencyTable/CryptoTable';
+import MainPage from './pages/mainPage/MainPage';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
                 <Header />
                 <Stats />
                 <Routes>
-                    <Route path='*' element={<CryptoTable />} />
+                    <Route path='*' element={<MainPage />} />
                     <Route path='/currency-statistics' element={<CurrencyStatistics />} />
                 </Routes>
             </div>
