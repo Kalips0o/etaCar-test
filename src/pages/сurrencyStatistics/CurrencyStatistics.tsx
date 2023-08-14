@@ -1,22 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink, useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import { formatNumber } from '../../utils/formatters';
 import styles from './CurrencyStatistics.module.scss';
-import { StatsContext, StatsContextState } from '../../context/stats.context';
-import { CurrencySummary } from '../../components/modals/portfolioModal/portfolioModalRow/PortfolioModalRow';
-import { Currency } from '../../types/apiTypes';
+import { formatNumber } from '../../utils/formatters';
 import CryptoChart from '../../components/сryptoСhart/СryptoСhart';
 import PortfolioModal from '../../components/modals/portfolioModal/PortfolioModal';
-import { api } from '../../api/Api';
+
 import AddToPortfolio from '../../stories/portfolio/AddToPortfolio';
+import { useCurrencyStatistics } from '../../hooks/hooks';
+import { Currency } from '../../types/apiTypes';
+import { CurrencySummary } from '../../components/modals/portfolioModal/portfolioModalRow/PortfolioModalRow';
 
 
 function CurrencyStatistics() {
-    const { setErrorMessage, setShouldShowStats } = useContext<StatsContextState>(StatsContext);
-    const [currencyStatisticsData, setCurrencyStatisticsData] = useState<Currency>();
-    const [searchParams] = useSearchParams();
-
     const prepareCurrencySummary = (currency: Currency): CurrencySummary => {
         return {
             id: currency.id,
@@ -25,20 +20,10 @@ function CurrencyStatistics() {
             priceUsd: parseFloat(currency.priceUsd),
         };
     };
+    const [searchParams] = useSearchParams();
 
-    useEffect((): void => {
-
-        axios.get(`${api}assets`, {
-            params: {
-                ids: searchParams.get('id'),
-            },
-        }).then(res => {
-            setCurrencyStatisticsData(res.data.data[0]);
-        }).catch(err => {
-            setErrorMessage(err);
-            setShouldShowStats(true);
-        });
-    }, [searchParams]);
+    const currencyId = searchParams.get('id');
+    const currencyStatisticsData = useCurrencyStatistics(currencyId);
 
     return (
         <div className={styles.currency_info}>
@@ -104,5 +89,7 @@ function CurrencyStatistics() {
         </div>
     );
 }
+
+
 
 export default CurrencyStatistics;

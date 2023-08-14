@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Currency } from '../../types/apiTypes';
-import { fetchCryptoData } from '../../api/Api';
 import Pagination from '../../components/pagination/Pagination';
 import CryptoTableRow from './CryptoTableRow';
 import styles from './CurrencyTable.module.scss';
 import CurrencyTableModal from '../../components/modals/currencyModal/CurrencyTableModal';
+import { Currency } from '../../types/apiTypes';
+import { fetchCryptoData } from '../../api/Api';
 
 function CryptoTable() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
@@ -16,15 +16,18 @@ function CryptoTable() {
     const itemsPerPage: number = 5;
 
     useEffect(() => {
-        fetchCryptoData()
-            .then(data => {
+        async function fetchData() {
+            try {
+                const data = await fetchCryptoData();
                 setCryptoData(data.data);
                 const calculatedTotalPages = Math.ceil(data.data.length / itemsPerPage);
                 setTotalPages(calculatedTotalPages);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('An error occurred:', error);
-            });
+            }
+        }
+
+        fetchData();
     }, []);
 
     const handlePrevPaginationTabClick = () => {

@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
-
 import {
     CartesianGrid,
     Line,
@@ -14,13 +12,24 @@ import {
 import { formatNumber } from "../../utils/formatters";
 import { StatsContext, StatsContextState } from "../../context/stats.context";
 import { fetchCryptoStats } from '../../api/Api';
-import { Button } from 'antd';
-
 
 export interface CurrencyChartPoint {
     date: string;
     priceUsd: string;
     time: number;
+}
+
+async function fetchCurrencyChartData(currencyId: string | null) {
+    const timeNow = Date.now();
+    const MONTH_MILLISECONDS = 2_592_000_000;
+    const timeMonthAgo = timeNow - MONTH_MILLISECONDS;
+
+    try {
+        const data = await fetchCryptoStats(currencyId, "d1", timeMonthAgo, timeNow);
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
 
 function CurrencyChart() {
@@ -31,18 +40,18 @@ function CurrencyChart() {
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        const timeNow = Date.now();
-        const MONTH_MILLISECONDS = 2_592_000_000;
-        const timeMonthAgo = timeNow - MONTH_MILLISECONDS;
-
-        fetchCryptoStats(searchParams.get("id"), "d1", timeMonthAgo, timeNow)
-            .then((data) => {
+        async function fetchData() {
+            try {
+                const data = await fetchCurrencyChartData(searchParams.get("id"));
                 setCurrencyChartData(data);
-            })
-            .catch((err) => {
-                setErrorMessage(err);
+            } catch (error) {
+                // @ts-ignore
+                setErrorMessage(error);
                 setShouldShowStats(true);
-            });
+            }
+        }
+
+        fetchData();
     }, []);
 
     return (

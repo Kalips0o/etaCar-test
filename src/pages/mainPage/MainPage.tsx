@@ -1,4 +1,3 @@
-import React from 'react';
 import CryptoTable from '../../stories/table/CryptoTable';
 
 
