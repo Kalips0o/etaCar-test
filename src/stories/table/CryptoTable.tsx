@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Pagination from '../../components/pagination/Pagination';
+import Pagination from '../pagination/Pagination';
 import CryptoTableRow from './CryptoTableRow';
 import styles from './CurrencyTable.module.scss';
 import CurrencyTableModal from '../../components/modals/currencyModal/CurrencyTableModal';
 import { Currency } from '../../types/apiTypes';
 import { fetchCryptoData } from '../../api/Api';
+import Loader from '../loader/Loader';
 
 function CryptoTable() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCrypto, setSelectedCrypto] = useState<Currency | null>(null);
     const [totalPages, setTotalPages] = useState<number>(1);
@@ -22,8 +24,10 @@ function CryptoTable() {
                 setCryptoData(data.data);
                 const calculatedTotalPages = Math.ceil(data.data.length / itemsPerPage);
                 setTotalPages(calculatedTotalPages);
+                setIsLoading(false);
             } catch (error) {
                 console.error('An error occurred:', error);
+                setIsLoading(false);
             }
         }
 
@@ -63,26 +67,30 @@ function CryptoTable() {
 
     return (
         <div className={styles.row}>
-            <table className={styles.crypto_table}>
-                <thead>
-                <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>Name</th>
-                    <th scope='col'>Symbol</th>
-                    <th scope='col'>Market Cap</th>
-                    <th scope='col'>Price</th>
-                    <th scope='col'>Supply</th>
-                    <th scope='col'>Volume (24Hr)</th>
-                    <th scope='col'>%(24h)</th>
-                    <th scope='col' />
-                </tr>
-                </thead>
-                <tbody>
-                {visibleCryptoData.map((crypto) => (
-                    <CryptoTableRow key={crypto.id} crypto={crypto} showModal={showModal} />
-                ))}
-                </tbody>
-            </table>
+            {isLoading ? (
+               <Loader/>
+            ) : (
+                <table className={styles.crypto_table}>
+                    <thead>
+                    <tr>
+                        <th scope='col'>#</th>
+                        <th scope='col'>Name</th>
+                        <th scope='col'>Symbol</th>
+                        <th scope='col'>Market Cap</th>
+                        <th scope='col'>Price</th>
+                        <th scope='col'>Supply</th>
+                        <th scope='col'>Volume (24Hr)</th>
+                        <th scope='col'>%(24h)</th>
+                        <th scope='col' />
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {visibleCryptoData.map((crypto) => (
+                        <CryptoTableRow key={crypto.id} crypto={crypto} showModal={showModal} />
+                    ))}
+                    </tbody>
+                </table>
+            )}
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

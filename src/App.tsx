@@ -3,21 +3,21 @@ import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 
 import CurrencyStatistics from './pages/сurrencyStatistics/CurrencyStatistics';
-
-import Stats from './stories/stats/Stats';
-import Header from './components/header/Header';
 import MainPage from './pages/mainPage/MainPage';
+import Layout from './stories/layout/Layout';
+import ErrorPage from './stories/errorPage/ErrorPage';
 
 
 function App() {
     return (
         <div className='App'>
             <div className='wrapper'>
-                <Header />
-                <Stats />
+                <Layout />
                 <Routes>
-                    <Route path='*' element={<MainPage />} />
+                    <Route path='/' element={<MainPage />} />
+                    <Route path='/etaCar-test' element={<MainPage />} />
                     <Route path='/currency-statistics' element={<CurrencyStatistics />} />
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </div>
         </div>
