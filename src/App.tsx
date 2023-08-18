@@ -14,8 +14,8 @@ function App() {
             <div className='wrapper'>
                 <Layout />
                 <Routes>
-                    <Route path='/' element={<MainPage />} />
                     <Route path='/etaCar-test' element={<MainPage />} />
+                    <Route path='/' element={<MainPage />} />
                     <Route path='/currency-statistics' element={<CurrencyStatistics />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>

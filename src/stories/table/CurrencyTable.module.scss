@@ -13,6 +13,7 @@
   border-collapse: separate;
   border-spacing: 0 1em;
   font-size: 1.25rem;
+  padding: 1rem;
 }
 
 .crypto_table thead th {
@@ -26,7 +27,7 @@
 }
 
 .crypto_table tbody tr td > * {
-  vertical-align: middle;
+  vertical-align: initial;
 }
 
 .crypto_table tbody tr td:first-child {
@@ -49,9 +50,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: auto;
+    width: 360px;
     margin: 10px;
-    border-spacing: 0.5em;
+    border-spacing: 0.5rem;
     font-size: 0.8rem;
     padding: 0.625rem;
   }
@@ -68,9 +69,19 @@
     font-size: 0.8rem;
   }
   .crypto_table thead th {
-    margin: 0 auto;
+    width: 40px;
     padding-left: 2px;
     padding-right: 2px;
+    text-align: center;
   }
-
+  .crypto_table tbody tr td {
+    max-width: 40px;
+    white-space: break-spaces;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center; /* Добавляем выравнивание по центру */
+  }
+.crypto_table tbody tr{
+  width: 360px;
+}
 }
