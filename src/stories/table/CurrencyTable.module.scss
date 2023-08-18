@@ -1,5 +1,5 @@
-
 .row {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -51,25 +51,26 @@
     align-items: center;
     width: auto;
     margin: 10px;
-    border-spacing: 0;
+    border-spacing: 0.5em;
     font-size: 0.8rem;
+    padding: 0.625rem;
   }
   .plus_icon {
     width: 1rem;
     height: 1rem;
   }
-
-  .cryptoTable thead th {
-    align-items: initial;
-    font-size: 0.8rem;
-  }
   .crypto_table tbody tr td img {
     width: 1rem;
     height: 1rem;
-    margin-left: 0.5rem;
+    margin-left: 4px;
   }
-  .crypto_table tbody tr {
-
+  .crypto_table thead tr {
+    font-size: 0.8rem;
+  }
+  .crypto_table thead th {
+    margin: 0 auto;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 
 }

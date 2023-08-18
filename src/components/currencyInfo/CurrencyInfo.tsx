@@ -81,7 +81,7 @@ function CurrencyInfo({ currencyStatisticsData }: { currencyStatisticsData: Curr
                             </a>
                             {currencySummary && <AddToPortfolio {...currencySummary} />}
                             <PortfolioModal />
-                            <NavLink to={'/'}>
+                            <NavLink className={styles.link} to={'/'}>
                                 <button className={styles.adaptive_back_button}> Back </button>
                             </NavLink>
                         </div>

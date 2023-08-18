@@ -92,15 +92,21 @@
 
 }
 
+.link{
+  text-decoration:none;
+}
 @media (max-width: 768px) {
+  .wrapper {
+    display: block;
 
+  }
   .currency_info {
     width: 90%;
     height: auto;
     margin: 30px auto;
   }
 
-  .info_block {
+.info_block {
     padding: 5px 5px;
     font-size: 15px;
   }
@@ -125,5 +131,6 @@
   }
   .adaptive_back_button {
     display: block;
+    font-size: 15px;
   }
 }

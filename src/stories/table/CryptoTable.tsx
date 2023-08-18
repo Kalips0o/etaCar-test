@@ -68,7 +68,7 @@ function CryptoTable() {
     return (
         <div className={styles.row}>
             {isLoading ? (
-               <Loader/>
+                <Loader />
             ) : (
                 <table className={styles.crypto_table}>
                     <thead>
@@ -81,7 +81,8 @@ function CryptoTable() {
                         <th scope='col'>Supply</th>
                         <th scope='col'>Volume (24Hr)</th>
                         <th scope='col'>%(24h)</th>
-                        <th scope='col' />
+                        <th scope='col'>Add</th>
+
                     </tr>
                     </thead>
                     <tbody>
