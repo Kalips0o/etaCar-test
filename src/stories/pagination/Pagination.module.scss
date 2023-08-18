@@ -22,16 +22,6 @@
   cursor: pointer;
 }
 
-.pagination_element:first-child {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-
-.pagination_element:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
 .pagination_element:hover:not(.active) {
   background-color: #ddd;
 }
@@ -46,7 +36,6 @@
   text-decoration: none;
 }
 
-/* Медиа-запрос для мобильных экранов */
 @media (max-width: 768px) {
   .pagination {
     font-size: 15px;
