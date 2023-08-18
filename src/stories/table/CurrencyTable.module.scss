@@ -47,20 +47,20 @@
 
 @media screen and (max-width: 768px) {
   .crypto_table {
-   width: 100%;
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .crypto_table {width: 100%;
+  .crypto_table {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-spacing: 0.3rem;
     font-size: 0.8rem;
-    margin: 20px;
+
   }
-  .row{
+  .row {
     width: auto;
   }
   .plus_icon {
