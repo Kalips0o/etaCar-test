@@ -82,7 +82,7 @@ function Portfolio() {
         <div>
             <button className={styles.portfolio_button} onClick={() => setShouldShowPortfolioModal(true)}>
                 {lastAddedCurrencyToPortfolio.id !== ''
-                    ? <div>
+                    ? <div >
                         {lastAddedCurrencyToPortfolio.name}
                         ({lastAddedCurrencyToPortfolio.symbol})
                         ${formatNumber(lastAddedCurrencyToPortfolio.priceUsd)}
