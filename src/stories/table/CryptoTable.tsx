@@ -81,7 +81,7 @@ function CryptoTable() {
                         <th scope='col'>Supply</th>
                         <th scope='col'>Volume (24Hr)</th>
                         <th scope='col'>%(24h)</th>
-                        <th scope='col'>Add</th>
+                        <th scope='col'/>
 
                     </tr>
                     </thead>
