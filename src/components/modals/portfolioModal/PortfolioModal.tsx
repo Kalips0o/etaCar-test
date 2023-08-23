@@ -10,13 +10,17 @@ function PortfolioModal() {
         currencyPortfolioRows,
     } = useContext<PortfolioModalContextState>(PortfolioModalContext);
 
+    const closeModal = () => {
+        setShouldShowPortfolioModal(false);
+    };
+
     const preparedModalClassName =
         `${styles.modal} ${shouldShowPortfolioModal
             ? styles.show : styles.do_not_show}`;
 
     return (
-        <div className={preparedModalClassName}>
-            <div className={styles.modal_content}>
+        <div className={preparedModalClassName} onClick={closeModal}>
+            <div className={styles.modal_content} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.portfolio_rows}>
                     {currencyPortfolioRows.length
                         ? currencyPortfolioRows.map((currencyPortfolioRow, index) => {
@@ -25,8 +29,7 @@ function PortfolioModal() {
                         : <div className={styles.empty_portfolio}>Portfolio is Empty</div>
                     }
                 </div>
-                <button className={styles.cancel_button} onClick={() => setShouldShowPortfolioModal(false)}>Cancel
-                </button>
+                <button className={styles.cancel_button} onClick={closeModal}>Cancel</button>
             </div>
         </div>
     );

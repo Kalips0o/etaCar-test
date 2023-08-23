@@ -3,7 +3,6 @@ import styles from './CurrencyTableModal.module.scss';
 import { PortfolioModalContext } from '../../../context/portfolioModal.context';
 import { Currency } from '../../../types/apiTypes';
 
-
 interface CurrencyTableModalProps {
     visible: boolean;
     onOk: () => void;
@@ -52,8 +51,8 @@ const CurrencyTableModal: React.FC<CurrencyTableModalProps> = ({ visible, onCanc
     }
 
     return (
-        <div className={styles.modalOverlay}>
-            <div className={styles.modalContent}>
+        <div className={styles.modalOverlay} onClick={handleCancel}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <h2 className={styles.modalTitle}>Add Crypto</h2>
                 <input
                     className={styles.input}
