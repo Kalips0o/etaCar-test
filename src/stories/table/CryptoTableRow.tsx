@@ -4,6 +4,7 @@ import { formatNumber } from '../../utils/formatters';
 import { Link } from 'react-router-dom';
 import ClientRoutes from '../../config/routes';
 import PlusIcon from '../../assets/plusIcon.png';
+import DefaultImage from '../../assets/logo_mark .png'
 import styles from './CryptoTableRow.module.scss';
 
 interface TableCellLinkProps {
@@ -27,9 +28,17 @@ function CryptoTableRow({ crypto, showModal }: CryptoTableRowProps) {
     const changeClass = isPositiveChange ? styles.textSuccess : styles.textDanger;
     const changeColor = isPositiveChange ? 'green' : 'red';
 
+    const imageUrl = `https://assets.coincap.io/assets/icons/${crypto.symbol.toLowerCase()}@2x.png`;
+
+
     return (
         <tr>
             <td><TableCellLink to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>{crypto.rank}</TableCellLink></td>
+            <td><TableCellLink to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>
+
+                    <img src={imageUrl}  />
+
+            </TableCellLink></td>
             <td><span className={styles.text_crypto}><TableCellLink to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>{crypto.name}</TableCellLink></span></td>
             <td><TableCellLink to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>{crypto.symbol}</TableCellLink></td>
             <td><TableCellLink to={`${ClientRoutes.CurrencyStatistics}?id=${crypto.id}`}>{formatNumber(parseFloat(crypto.marketCapUsd))}</TableCellLink></td>

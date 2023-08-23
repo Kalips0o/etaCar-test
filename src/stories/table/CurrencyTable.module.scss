@@ -1,6 +1,5 @@
 .row {
-  margin-top: 20px;
-  width: 100%;
+   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,6 +42,7 @@
 .crypto_table tbody tr td img {
   width: 1.5625rem;
   height: 1.5625rem;
+  margin-left: 1rem;
 }
 
 @media screen and (max-width: 768px) {

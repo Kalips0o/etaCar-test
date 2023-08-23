@@ -15,12 +15,12 @@ function CryptoTable() {
     const [totalPages, setTotalPages] = useState<number>(1);
     const [currentPage, setCurrentPage] = useState<number>(1);
 
-    const itemsPerPage: number = 5;
+    const itemsPerPage: number = 7;
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const data = await fetchCryptoData();
+                const data = await fetchCryptoData(totalPages * itemsPerPage, 0); // Загружаем все криптовалюты
                 setCryptoData(data.data);
                 const calculatedTotalPages = Math.ceil(data.data.length / itemsPerPage);
                 setTotalPages(calculatedTotalPages);
@@ -74,6 +74,7 @@ function CryptoTable() {
                     <thead>
                     <tr>
                         <th scope='col'>#</th>
+                        <th scope='col'>Logo</th>
                         <th scope='col'>Name</th>
                         <th scope='col'>Symbol</th>
                         <th scope='col'>Market Cap</th>

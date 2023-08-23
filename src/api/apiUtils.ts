@@ -1,23 +1,16 @@
-import { Currency } from '../types/apiTypes';
 import { fetchCryptoData } from './Api';
+import { Currency } from '../types/apiTypes';
 
-
-export async function fetchTopRankedCurrencies(): Promise<Currency[]> {
+export async function fetchCurrencies(isTopRanked: boolean = false): Promise<Currency[]> {
     try {
-        const data = await fetchCryptoData();
-        const topThreeCurrencies = data.data.slice(0, 3);
-        return topThreeCurrencies;
-    } catch (error) {
-        console.error('An error occurred:', error);
-        return [];
-    }
-}
+        // Передаем параметры limit и offset
+        const data = await fetchCryptoData(10, 0);
 
-
-export async function fetchCryptoTableData(): Promise<Currency[]> {
-    try {
-        const data = await fetchCryptoData();
-        return data.data;
+        if (isTopRanked) {
+            return data.data.slice(0, 3);
+        } else {
+            return data.data;
+        }
     } catch (error) {
         console.error('An error occurred:', error);
         return [];

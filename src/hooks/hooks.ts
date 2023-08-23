@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Currency } from '../types/apiTypes';
-import { fetchCryptoTableData, fetchTopRankedCurrencies } from '../api/apiUtils';
+import { fetchCurrencies } from '../api/apiUtils';
 import { fetchCurrencyData } from '../api/Api';
 
 
@@ -9,7 +9,7 @@ export function useTopRankedCurrencies() {
 
     useEffect(() => {
         async function fetchData() {
-            const currencies = await fetchTopRankedCurrencies();
+            const currencies = await fetchCurrencies(true);
             setTopRankedCurrencyData(currencies);
         }
 
@@ -22,10 +22,9 @@ export function useTopRankedCurrencies() {
 
 export function useCryptoTableData() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
-
     useEffect(() => {
         async function fetchData() {
-            const data = await fetchCryptoTableData();
+            const data = await fetchCurrencies();
             setCryptoData(data);
         }
 

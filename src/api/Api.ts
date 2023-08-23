@@ -5,17 +5,20 @@ import { Currency } from '../types/apiTypes';
 export const api = 'https://api.coincap.io/v2/';
 const assetsEndpoint = 'assets';
 
-export const fetchCryptoData = async () => {
+export const fetchCryptoData = async (limit: number, offset: number) => {
     try {
-        const response = await axios.get(`${api}${assetsEndpoint}`);
+        const response = await axios.get(`${api}${assetsEndpoint}`, {
+            params: {
+                limit:400,
+                offset:offset,
+            },
+        });
         return response.data;
-
     } catch (error) {
         console.error('An error occurred:', error);
         throw error;
     }
 };
-
 
 export const fetchCryptoStats = async (id: string | null, interval: string, start: number, end: number) => {
     try {
@@ -56,3 +59,13 @@ export async function fetchCurrencyData(id: unknown) {
         throw error;
     }
 }
+//
+// export const fetchPagination = async (limit: number, offset: number) => {
+//     try {
+//         const response = await axios.get(`${api}${assetsEndpoint}?limit=${limit}&offset=${offset}`);
+//         return response.data;
+//     } catch (error) {
+//         console.error('An error occurred:', error);
+//         throw error;
+//     }
+// };
