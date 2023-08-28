@@ -5,12 +5,12 @@ import { Currency } from '../types/apiTypes';
 export const api = 'https://api.coincap.io/v2/';
 const assetsEndpoint = 'assets';
 
-export const fetchCryptoData = async (limit: number, offset: number) => {
+export const fetchCryptoData = async ({ limit, offset }: { limit: number; offset: number }) => {
     try {
         const response = await axios.get(`${api}${assetsEndpoint}`, {
             params: {
-                limit:400,
-                offset:offset,
+                limit:10,
+                offset,
             },
         });
         return response.data;

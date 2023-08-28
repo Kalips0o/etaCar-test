@@ -4,8 +4,8 @@ import CryptoTableRow from './CryptoTableRow';
 import styles from './CurrencyTable.module.scss';
 import CurrencyTableModal from '../../components/modals/currencyModal/CurrencyTableModal';
 import { Currency } from '../../types/apiTypes';
-import { fetchCryptoData } from '../../api/Api';
 import Loader from '../loader/Loader';
+import { fetchCurrencies } from '../../api/apiUtils';
 
 function CryptoTable() {
     const [cryptoData, setCryptoData] = useState<Currency[]>([]);
@@ -15,14 +15,14 @@ function CryptoTable() {
     const [totalPages, setTotalPages] = useState<number>(1);
     const [currentPage, setCurrentPage] = useState<number>(1);
 
-    const itemsPerPage: number = 7;
+
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const data = await fetchCryptoData(totalPages * itemsPerPage, 0); // Загружаем все криптовалюты
-                setCryptoData(data.data);
-                const calculatedTotalPages = Math.ceil(data.data.length / itemsPerPage);
+                const data = await fetchCurrencies(false, 10, (currentPage - 1) * 10);
+                setCryptoData(data);
+                const calculatedTotalPages = Math.ceil(data.length);
                 setTotalPages(calculatedTotalPages);
                 setIsLoading(false);
             } catch (error) {
@@ -32,7 +32,7 @@ function CryptoTable() {
         }
 
         fetchData();
-    }, []);
+    }, [currentPage]);
 
     const handlePrevPaginationTabClick = () => {
         if (currentPage !== 1) {
@@ -46,9 +46,6 @@ function CryptoTable() {
         }
     };
 
-    const startIndex: number = (currentPage - 1) * itemsPerPage;
-    const endIndex: number = startIndex + itemsPerPage;
-    const visibleCryptoData: Currency[] = cryptoData.slice(startIndex, endIndex);
 
     const handleModalOk = () => {
         setIsModalOpen(false);
@@ -82,12 +79,12 @@ function CryptoTable() {
                         <th scope='col'>Supply</th>
                         <th scope='col'>Volume (24Hr)</th>
                         <th scope='col'>%(24h)</th>
-                        <th scope='col'/>
+                        <th scope='col' />
 
                     </tr>
                     </thead>
                     <tbody>
-                    {visibleCryptoData.map((crypto) => (
+                    {cryptoData.map((crypto) => (
                         <CryptoTableRow key={crypto.id} crypto={crypto} showModal={showModal} />
                     ))}
                     </tbody>

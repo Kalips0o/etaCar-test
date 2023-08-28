@@ -1,10 +1,9 @@
 import { fetchCryptoData } from './Api';
 import { Currency } from '../types/apiTypes';
 
-export async function fetchCurrencies(isTopRanked: boolean = false): Promise<Currency[]> {
+export async function fetchCurrencies(isTopRanked: boolean = false, limit: number = 10, offset: number = 0): Promise<Currency[]> {
     try {
-        // Передаем параметры limit и offset
-        const data = await fetchCryptoData(10, 0);
+        const data = await fetchCryptoData({ limit, offset });
 
         if (isTopRanked) {
             return data.data.slice(0, 3);
